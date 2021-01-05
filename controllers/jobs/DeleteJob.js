@@ -10,4 +10,5 @@ export default (req, res) => {
       message: "Job is deleted boom!",
     });
   });
+  return;
 };

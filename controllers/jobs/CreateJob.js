@@ -26,4 +26,5 @@ export default (req, res) => {
       .status(200)
       .json({ message: "New Job Added successfully.", job: job });
   });
+  return;
 };

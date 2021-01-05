@@ -11,12 +11,14 @@ export default (req, res) => {
       return res.status(401).json({
         message: "Login Session Expired",
       });
+    } else {
+      return res.status(200).json({
+        username: user.username,
+        email: user.email,
+        role: user.role,
+        _id: user._id,
+      });
     }
-    return res.status(200).json({
-      username: user.username,
-      email: user.email,
-      role: user.role,
-      _id: user._id,
-    });
   });
+  return;
 };
