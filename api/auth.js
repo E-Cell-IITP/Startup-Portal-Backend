@@ -24,6 +24,10 @@ const auth = async (req, res) => {
       const signUp = (await import("../controllers/auth/SignUp")).default;
       return await signUp(req, res);
 
+    case "CHECKAUTH":
+      const checkAuth = (await import("../controllers/auth/CheckAuth")).default;
+      return checkAuth(req, res);
+
     case "VERIFY":
       const verify = (await import("../controllers/auth/Verify")).default;
       return verify(req, res);
@@ -35,4 +39,4 @@ const auth = async (req, res) => {
   }
 };
 
-module.exports = chain(cors(), morgan("tiny"))(auth);
+module.exports = chain(cors())(auth);

@@ -10,10 +10,10 @@ const profileSchema = new mongoose.Schema({
   username: {
     type: String,
   },
-  first_name: {
+  firstName: {
     type: String,
   },
-  last_name: {
+  lastName: {
     type: String,
   },
   about: {

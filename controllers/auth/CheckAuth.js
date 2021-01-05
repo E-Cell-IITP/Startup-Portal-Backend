@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-export default (req, res, next) => {
+export default (req, res) => {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   if (!token) {
@@ -12,7 +12,11 @@ export default (req, res, next) => {
         message: "Login Session Expired",
       });
     }
-    req.user = user;
-    next();
+    return res.status(200).json({
+      username: user.username,
+      email: user.email,
+      role: user.role,
+      _id: user._id,
+    });
   });
 };

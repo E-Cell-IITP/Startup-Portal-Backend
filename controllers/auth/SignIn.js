@@ -25,7 +25,9 @@ export default async (req, res) => {
         const accessToken = jwt.sign(
           {
             username: user.username,
+            email: user.email,
             _id: user._id,
+            role: user.role,
           },
           process.env.ACCESS_TOKEN_SECRET,
           { expiresIn: "1h" } // 1 hour
@@ -34,6 +36,8 @@ export default async (req, res) => {
         user.save();
         return res.status(200).json({
           accessToken: accessToken,
+          username: user.username,
+          email: user.email,
         });
       } else {
         return res.status(403).json({
