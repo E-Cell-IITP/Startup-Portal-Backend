@@ -5,6 +5,7 @@ let cachedMongoConn = null;
 export default (MONGO_URI) => {
   return new Promise((resolve, reject) => {
     mongoose.Promise = global.Promise;
+    console.log("Database URL: ", MONGO_URI);
     mongoose.connection
       // Reject if an error occurred when trying to connect to MongoDB
       .on("error", (error) => {
