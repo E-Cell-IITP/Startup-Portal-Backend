@@ -1,11 +1,14 @@
 import connectToDatabase from "../controllers/connecttoDb";
 import { chain } from "@amaurymartiny/now-middleware";
 import cors from "cors";
-import morgan from "morgan";
+import signOut from "../controllers/auth/SignOut";
+import signIn from "../controllers/auth/SignIn";
+import signUp from "../controllers/auth/SignUp";
+import checkAuth from "../controllers/auth/CheckAuth";
+import verify from "../controllers/auth/Verify";
 
 const auth = async (req, res) => {
   if (req.method === "GET") {
-    const signOut = (await import("../controllers/auth/SignOut")).default;
     return signOut(req, res);
   }
   if (req.method != "POST") {
@@ -17,19 +20,15 @@ const auth = async (req, res) => {
   await connectToDatabase(process.env.MONGODB_URI);
   switch (req.body.method) {
     case "SIGNIN":
-      const signIn = (await import("../controllers/auth/SignIn")).default;
       return await signIn(req, res);
 
     case "SIGNUP":
-      const signUp = (await import("../controllers/auth/SignUp")).default;
       return await signUp(req, res);
 
     case "CHECKAUTH":
-      const checkAuth = (await import("../controllers/auth/CheckAuth")).default;
       return checkAuth(req, res);
 
     case "VERIFY":
-      const verify = (await import("../controllers/auth/Verify")).default;
       return verify(req, res);
 
     default:

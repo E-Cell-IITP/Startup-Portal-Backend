@@ -1,8 +1,10 @@
 import connectToDatabase from "../controllers/connecttoDb";
 import { chain } from "@amaurymartiny/now-middleware";
 import cors from "cors";
-import morgan from "morgan";
 import isLoggedIn from "../controllers/middlewares/isLoggedIn";
+import getProfile from "../controllers/profile/GetProfile";
+import getAllProfiles from "../controllers/profile/GetAllProfiles";
+import updateProfile from "../controllers/profile/UpdateProfile";
 
 const profile = async (req, res) => {
   if (req.method != "POST") {
@@ -14,20 +16,12 @@ const profile = async (req, res) => {
   await connectToDatabase(process.env.MONGODB_URI);
   switch (req.body.method) {
     case "GET_MY_PROFILE":
-      const getProfile = (await import("../controllers/profile/GetProfile"))
-        .default;
       return getProfile(req, res);
 
     case "GET_ALL_PROFILES":
-      const getAllProfiles = (
-        await import("../controllers/profile/GetAllProfiles")
-      ).default;
       return getAllProfiles(req, res);
 
     case "UPDATE_PROFILE":
-      const updateProfile = (
-        await import("../controllers/profile/UpdateProfile")
-      ).default;
       return updateProfile(req, res);
 
     default:

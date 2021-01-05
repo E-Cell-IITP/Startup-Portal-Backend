@@ -1,8 +1,10 @@
 import connectToDatabase from "../controllers/connecttoDb";
 import { chain } from "@amaurymartiny/now-middleware";
 import cors from "cors";
-import morgan from "morgan";
 import isLoggedIn from "../controllers/middlewares/isLoggedIn";
+import applyById from "../controllers/application/ApplyWithId";
+import getApplicationByJobId from "../controllers/application/GetByJobId";
+import getApplictionsByUserId from "../controllers/application/GetByUserId";
 
 const jobs = async (req, res) => {
   await connectToDatabase(process.env.MONGODB_URI);
@@ -13,14 +15,9 @@ const jobs = async (req, res) => {
   }
   switch (req.body.method) {
     case "APPLY_BY_ID":
-      const applyById = (await import("../controllers/application/ApplyWithId"))
-        .default;
       return applyById(req, res);
 
     case "GET_BY_JOB_ID":
-      const getApplicationByJobId = (
-        await import("../controllers/application/GetByJobId")
-      ).default;
       return getApplicationByJobId(req, res);
 
     case "GET_BY_USER_ID":
@@ -30,9 +27,6 @@ const jobs = async (req, res) => {
           user: req.user,
         });
       }
-      const getApplictionsByUserId = (
-        await import("../controllers/application/GetByUserId")
-      ).default;
       return getApplictionsByUserId(req, res);
 
     default:

@@ -1,8 +1,12 @@
 import connectToDatabase from "../controllers/connecttoDb";
 import { chain } from "@amaurymartiny/now-middleware";
 import cors from "cors";
-import morgan from "morgan";
 import isLoggedIn from "../controllers/middlewares/isLoggedIn";
+import getJobsList from "../controllers/jobs/GetJobsList";
+import getJobById from "../controllers/jobs/GetJobById";
+import createJob from "../controllers/jobs/CreateJob";
+import updateJob from "../controllers/jobs/UpdateJob";
+import deleteJob from "../controllers/jobs/DeleteJob";
 
 const jobs = async (req, res) => {
   await connectToDatabase(process.env.MONGODB_URI);
@@ -10,12 +14,8 @@ const jobs = async (req, res) => {
     case "POST":
       switch (req.body.method) {
         case "ALL":
-          const getJobsList = (await import("../controllers/jobs/GetJobsList"))
-            .default;
           return getJobsList(req, res);
         case "ID":
-          const getJobById = (await import("../controllers/jobs/GetJobById"))
-            .default;
           return getJobById(req, res);
 
         case "ADMIN":
@@ -25,8 +25,6 @@ const jobs = async (req, res) => {
               user: req.user,
             });
           }
-          const createJob = (await import("../controllers/jobs/CreateJob"))
-            .default;
           return createJob(req, res);
 
         default:
@@ -41,7 +39,6 @@ const jobs = async (req, res) => {
           message: "Forbidden",
         });
       }
-      const updateJob = (await import("../controllers/jobs/UpdateJob")).default;
       return updateJob(req, res);
 
     case "DELETE":
@@ -50,7 +47,6 @@ const jobs = async (req, res) => {
           message: "Forbidden",
         });
       }
-      const deleteJob = (await import("../controllers/jobs/DeleteJob")).default;
       return deleteJob(req, res);
 
     default:
