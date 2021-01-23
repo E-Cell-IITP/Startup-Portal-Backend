@@ -7,7 +7,15 @@ export default (req, res) => {
         message: "Please try again later.",
       });
     }
-    const { about, firstName, lastName, contact, branch, number } = req.body;
+    const {
+      about,
+      firstName,
+      lastName,
+      contact,
+      branch,
+      number,
+      resumeUrl,
+    } = req.body;
     console.log("RequestBody: ", req.body);
     profile.about = about;
     profile.firstName = firstName;
@@ -15,6 +23,7 @@ export default (req, res) => {
     profile.contact = contact;
     profile.branch = branch;
     profile.number = number;
+    profile.resumeUrl = resumeUrl;
     profile.save((err, obj) => {
       if (err) {
         return res.status(500).json({

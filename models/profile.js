@@ -29,10 +29,9 @@ const profileSchema = new mongoose.Schema({
     type: String,
   },
   // TODO: Resume and Profile Picture
-  // resume: {
-  //   data: Buffer,
-  //   contentType: String,
-  // },
+  resumeUrl: {
+    type: String,
+  },
 });
 
 const Profile = mongoose.model("Profile", profileSchema);

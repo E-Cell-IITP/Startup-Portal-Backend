@@ -14,7 +14,7 @@ const jobs = async (req, res) => {
     case "POST":
       switch (req.body.method) {
         case "ALL":
-          return getJobsList(req, res);
+          return await getJobsList(req, res);
         case "ID":
           return getJobById(req, res);
 
