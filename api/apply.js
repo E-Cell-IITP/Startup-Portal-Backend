@@ -21,13 +21,7 @@ const jobs = async (req, res) => {
       return getApplicationByJobId(req, res);
 
     case "GET_BY_USER_ID":
-      if (req.user.role !== 1) {
-        return res.status(403).json({
-          message: "Forbidden",
-          user: req.user,
-        });
-      }
-      return getApplictionsByUserId(req, res);
+      return await getApplictionsByUserId(req, res);
 
     default:
       return res.status(404).json({
