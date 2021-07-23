@@ -26,7 +26,8 @@ export default async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const verificationToken = randomstring.generate(12);
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "mail.iitp.ac.in",
+      port: 587,
       auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWD,
@@ -34,7 +35,7 @@ export default async (req, res) => {
     });
 
     const mailOptions = {
-      from: "noreply@ecell-iitp.org",
+      from: process.env.EMAIL,
       to: req.body.email,
       subject: "E-cell Email Verification",
       text: "You have registered successfully at Ecell IIT Patna . Click the link to activate your account and login",
