@@ -44,6 +44,7 @@ export default async (req, res) => {
 
     transporter.sendMail(mailOptions, (error, _info) => {
       if (error) {
+        console.log("MailSendingError: ", error);
         return res.status(503).json({
           message: "Sorry, Please try again after couple of minutes.",
         });
