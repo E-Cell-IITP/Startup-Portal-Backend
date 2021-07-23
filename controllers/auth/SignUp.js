@@ -37,8 +37,7 @@ export default async (req, res) => {
       from: "noreply@ecell-iitp.org",
       to: req.body.email,
       subject: "E-cell Email Verification",
-      text:
-        "You have registered successfully at Ecell IIT Patna . Click the link to activate your account and login",
+      text: "You have registered successfully at Ecell IIT Patna . Click the link to activate your account and login",
       html: `<p>You have registered successfully at Ecell IIT Patna . Click the below link to activate your account and login </p>
                  <h4><a href="${process.env.CLIENT_URL}/auth/verify/${verificationToken}/${email}">Verify Email Address</h4>`,
     };

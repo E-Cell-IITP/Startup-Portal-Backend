@@ -7,15 +7,8 @@ export default (req, res) => {
         message: "Please try again later.",
       });
     }
-    const {
-      about,
-      firstName,
-      lastName,
-      contact,
-      branch,
-      number,
-      resumeUrl,
-    } = req.body;
+    const { about, firstName, lastName, contact, branch, number, resumeUrl } =
+      req.body;
     console.log("RequestBody: ", req.body);
     profile.about = about;
     profile.firstName = firstName;

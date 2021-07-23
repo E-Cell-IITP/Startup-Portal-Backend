@@ -1,5 +1,5 @@
 import connectToDatabase from "../controllers/connecttoDb";
-import { chain } from "@amaurymartiny/now-middleware";
+import { chain } from "@amaurym/now-middleware";
 import cors from "cors";
 import signOut from "../controllers/auth/SignOut";
 import signIn from "../controllers/auth/SignIn";

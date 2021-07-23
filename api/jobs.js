@@ -1,5 +1,5 @@
 import connectToDatabase from "../controllers/connecttoDb";
-import { chain } from "@amaurymartiny/now-middleware";
+import { chain } from "@amaurym/now-middleware";
 import cors from "cors";
 import isLoggedIn from "../controllers/middlewares/isLoggedIn";
 import getJobsList from "../controllers/jobs/GetJobsList";
